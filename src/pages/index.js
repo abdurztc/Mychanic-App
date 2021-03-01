@@ -1,4 +1,4 @@
 /* eslint-disable prettier/prettier */
 import Splash from './Splash';
-
-export {Splash};
+import GetStarted from './GetStarted';
+export {Splash, GetStarted};

@@ -1,12 +1,17 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable no-unused-vars */
+
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {Splash} from './pages';
-import GetStarted from './pages/GetStarted';
+import { NavigationContainer } from '@react-navigation/native';
+import Router from './router';
+
 
 const App = () => {
-  return <GetStarted />;
+  return (
+    <NavigationContainer>
+      <Router />
+    </NavigationContainer>
+  );
 };
 
 export default App;

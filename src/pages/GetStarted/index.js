@@ -18,7 +18,7 @@ const GetStarted = () => {
       </View>
 
       <View>
-        <Button title="Get Started" />
+        <Button title="Get Started" onPress={() => alert('Haiiii')} />
         <Gap height={16} />
         <Button type="secondary" title="Sign In" />
       </View>
