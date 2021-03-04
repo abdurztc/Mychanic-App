@@ -1,6 +1,7 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
-import { colors } from '../../../assets/utils';
+import {colors} from '../../../assets/utils';
 
 const Input = ({label}) => {
   return (
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
     borderRadius: 10,
-    padding: 12
+    padding: 12,
   },
   label: {
     fontSize: 16,

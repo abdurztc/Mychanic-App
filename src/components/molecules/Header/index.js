@@ -1,16 +1,17 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable comma-dangle */
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {IconBackDark} from '../../../assets';
-import {colors} from '../../../assets/utils/colors';
-import {Gap} from '../../atoms';
 
-const Header = () => {
+/* eslint-disable prettier/prettier */
+
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { colors } from '../../../assets/utils/colors';
+import { Button, Gap } from '../../atoms';
+
+const Header = ({onPress, title}) => {
   return (
     <View style={styles.container}>
-      <IconBackDark />
-      <Text style={styles.text}>Daftar </Text>
+      <Button type="icon-only" onPress={onPress} />
+      <Text style={styles.text}>{title} </Text>
       <Gap width={24} />
     </View>
   );
