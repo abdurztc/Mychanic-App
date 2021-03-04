@@ -4,6 +4,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, ImageBackground} from 'react-native';
 import {ILGetStarted, ILLogo} from '../../assets';
+import { colors, fonts } from '../../assets/utils';
 import {Button, Gap} from '../../components';
 
 const GetStarted = ({navigation}) => {
@@ -12,8 +13,7 @@ const GetStarted = ({navigation}) => {
       <View>
         <ILLogo />
         <Text style={styles.title}>
-          Konsultasikan masalah kendaraan anda bersama mekanik terpercaya kami
-          yaa.
+          Konsultasikan masalah kendaraan anda bersama mekanik terpercaya
         </Text>
       </View>
 
@@ -39,13 +39,13 @@ const styles = StyleSheet.create({
   page: {
     padding: 40,
     justifyContent: 'space-between',
-    backgroundColor: 'white',
+    backgroundColor: colors.white,
     flex: 1,
   },
   title: {
     fontSize: 28,
-    color: 'white',
+    color: colors.white,
     marginTop: 91,
-    fontFamily: 'Nunito-SemiBold',
+    fontFamily: fonts.primary[600],
   },
 });
