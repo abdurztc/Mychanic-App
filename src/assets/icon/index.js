@@ -3,12 +3,14 @@ import IconBackDark from './ic-back-dark.svg';
 import IconBackLight from './ic-back-light.svg';
 import IconAddPhoto from './ic-add-photo.svg';
 import IconRemovePhoto from './ic-remove-photo.svg';
-import IconDoctor from './ic-doctor.svg';
-import IconDoctorActive from './ic-doctor-active.svg';
-import IconMessages from './ic-messages.svg';
-import IconMessagesActive from './ic-messages-active.svg';
-import IconHospitals from './ic-hospitals.svg';
-import IconHospitalsActive from './ic-hospitals-active.svg';
+import IconHome from './ic-home.svg';
+import IconHomeActive from './ic-home-active.svg';
+import IconChat from './ic-chat.svg';
+import IconChatActive from './ic-chat-active.svg';
+import IconCS from './ic-cs.svg';
+import IconCSActive from './ic-cs-active.svg';
+import IconProfile from './ic-profile.svg';
+import IconProfileActive from './ic-profile-active.svg';
 import IconStar from './ic-star.svg';
 import ICNext from './ic-next.svg';
 import ICSendDark from './ic-send-dark.svg';
@@ -23,12 +25,14 @@ export {
   IconBackLight,
   IconAddPhoto,
   IconRemovePhoto,
-  IconDoctor,
-  IconDoctorActive,
-  IconMessages,
-  IconMessagesActive,
-  IconHospitals,
-  IconHospitalsActive,
+  IconHome,
+  IconHomeActive,
+  IconChat,
+  IconChatActive,
+  IconCS,
+  IconCSActive,
+  IconProfile,
+  IconProfileActive,
   IconStar,
   ICNext,
   ICSendDark,

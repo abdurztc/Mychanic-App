@@ -1,14 +1,35 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
-
-import {Splash, GetStarted, Register, Login, UploadPhoto} from '../pages';
+import React from 'react';
+import {ButtomNavigator} from '../components';
+import {
+  GetStarted,
+  Home,
+  Login,
+  Messages,
+  Profile,
+  Register,
+  Splash,
+  UploadPhoto,
+} from '../pages';
 
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+
+const MainApp = () => {
+  return (
+    <Tab.Navigator tabBar={props => <ButtomNavigator {...props} />}>
+      <Tab.Screen name="Home" component={Home} />
+      <Tab.Screen name="Chat" component={Messages} />
+      <Tab.Screen name="Profile" component={Profile} />
+    </Tab.Navigator>
+  );
+};
 
 const Router = () => {
   return (
-    <Stack.Navigator initialRouteName="Splash">
+    <Stack.Navigator initialRouteName="MainApp">
       <Stack.Screen
         name="Splash"
         component={Splash}
@@ -32,6 +53,11 @@ const Router = () => {
       <Stack.Screen
         name="UploadPhoto"
         component={UploadPhoto}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="MainApp"
+        component={MainApp}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

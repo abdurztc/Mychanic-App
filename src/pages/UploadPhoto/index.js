@@ -1,10 +1,10 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
-import {Text, Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import {IconAddPhoto, ILNullPhoto} from '../../assets';
-import {Button, Gap, Header, Link} from '../../components';
 import {colors, fonts} from '../../assets/utils';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-const UploadPhoto = () => {
+import {Button, Gap, Header, Link} from '../../components';
+const UploadPhoto = ({navigation}) => {
   return (
     <View style={styles.page}>
       <Header title="Upload Photo" />
@@ -14,13 +14,19 @@ const UploadPhoto = () => {
             <Image source={ILNullPhoto} style={styles.avatar} />
             <IconAddPhoto style={styles.addPhoto} />
           </View>
-          <Text style={styles.name} >Alichia Diasuma</Text>
-          <Text style={styles.profession} >Copy Writter</Text>
+          <Text style={styles.name}>Alichia Diasuma</Text>
+          <Text style={styles.profession}>Copy Writter</Text>
         </View>
         <View>
-          <Button title="Upload and Continue" />
+          <Button title="Upload and Continue" onPress={() => navigation.replace('Home')} />
           <Gap height={30} />
-          <Link title="Lewati Langkah ini"  align='center' size={16} color={colors.text.secondary}/>
+          <Link
+            title="Lewati Langkah ini"
+            align="center"
+            size={16}
+            color={colors.text.secondary}
+            onPress={() => navigation.replace('Home')}
+          />
         </View>
       </View>
     </View>
