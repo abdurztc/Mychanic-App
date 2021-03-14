@@ -1,0 +1,20 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "category": "Diesel"
+        },
+        {
+            "id": 2,
+            "category": "Motor"
+        },
+        {
+            "id": 3,
+            "category": "Transmisi"
+        },
+        {
+            "id": 4,
+            "category": "Diesel"
+        }
+    ]
+}
