@@ -11,7 +11,7 @@ const Register = ({navigation}) => {
       <View style={styles.content}>
         <Input label="Full Name" />
         <Gap height={24} />
-        <Input label="Profesi" />
+        <Input label="Kendaraan Anda" />
         <Gap height={24} />
         <Input label="Email" />
         <Gap height={24} />

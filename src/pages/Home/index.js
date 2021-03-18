@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Dummy2, Dummy3, Dummy4, JSONCategoryMechanic} from '../../assets';
 import {colors, fonts} from '../../assets/utils';
 import {
   Category,
@@ -9,16 +10,15 @@ import {
   HomeProfile,
   TopMechanical,
 } from '../../components';
-import {JSONCategoryMechanic} from '../../assets';
 
-const Home = () => {
+const Home = ({navigation}) => {
   return (
     <View style={styles.page}>
       <View style={styles.content}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.wrapperSection}>
             <Gap height={30} />
-            <HomeProfile />
+            <HomeProfile onPress={() => navigation.navigate('UserProfile')} />
             <Text style={styles.welcome}>
               Ayo konsultasi masalah kendaraan dengan mekanikmu
             </Text>
@@ -31,7 +31,11 @@ const Home = () => {
                 <Gap width={32} />
                 {JSONCategoryMechanic.data.map(item => {
                   return (
-                  <Category key={item.id} category={item.category} />
+                    <Category
+                      key={item.id}
+                      category={item.category}
+                      onPress={() => navigation.navigate('ChooseMechanic')}
+                    />
                   );
                 })}
                 <Gap width={22} />
@@ -40,9 +44,24 @@ const Home = () => {
           </View>
           <View style={styles.wrapperSection}>
             <Text style={styles.sectionLabel}>Our Top mechanical</Text>
-            <TopMechanical />
-            <TopMechanical />
-            <TopMechanical />
+            <TopMechanical
+              name="Steffi"
+              category="Spesialist Diesel"
+              avatar={Dummy2}
+              onPress={() => navigation.navigate('MechanicProfile')}
+            />
+            <TopMechanical
+              name="Dasha"
+              category="Spesialist Diesel"
+              avatar={Dummy3}
+              onPress={() => navigation.navigate('MechanicProfile')}
+            />
+            <TopMechanical
+              name="Yupy"
+              category="Spesialist Diesel"
+              avatar={Dummy4}
+              onPress={() => navigation.navigate('MechanicProfile')}
+            />
             <Text style={styles.sectionLabel}>Good News for you</Text>
           </View>
 

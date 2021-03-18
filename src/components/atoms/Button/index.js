@@ -1,11 +1,15 @@
 /* eslint-disable prettier/prettier */
 
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { colors } from '../../../assets/utils';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {colors} from '../../../assets/utils';
+import BtnIconSend from './BtnIconSend';
 import IconOnly from './IconOnly';
 
-const Button = ({type, title, onPress, icon}) => {
+const Button = ({type, title, onPress, icon, disable}) => {
+  if (type === 'btn-icon-send') {
+    return <BtnIconSend disable={disable} />;
+  }
   if (type === 'icon-only') {
     return <IconOnly icon={icon} onPress={onPress} />;
   }

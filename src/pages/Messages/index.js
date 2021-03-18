@@ -3,9 +3,9 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Dummy1, Dummy2, Dummy3, Dummy4} from '../../assets';
 import {colors, fonts} from '../../assets/utils';
-import {ListMechanic} from '../../components';
+import {List} from '../../components';
 
-const Messages = () => {
+const Messages = ({navigation}) => {
   const [mechanics] = useState([
     {
       id: 1,
@@ -38,11 +38,12 @@ const Messages = () => {
         <Text style={styles.title}>Chat History</Text>
         {mechanics.map(mechanic => {
           return (
-            <ListMechanic
+            <List
             key={mechanic.id}
               profile={mechanic.profile}
               name={mechanic.name}
               desc={mechanic.desc}
+              onPress={() => navigation.navigate('Chatting')}
             />
           );
         })}

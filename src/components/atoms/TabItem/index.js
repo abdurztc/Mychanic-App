@@ -16,7 +16,7 @@ const TabItem = ({title, active, onPress, onLongPress}) => {
       return active ? <IconHomeActive /> : <IconHome />;
     }
    if (title === 'Chat') {
-       return active ? <IconChatActive /> : <IconChat />
+       return active ? <IconChatActive /> : <IconChat />;
    }
     if (title === 'Profile') {
       return active ? <IconProfileActive /> : <IconProfile />;

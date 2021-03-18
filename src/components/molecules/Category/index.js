@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {ILDiesel, ILMotor, ILTransmisi} from '../../../assets';
-import {colors, fonts} from '../../../assets/utils';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { ILDiesel, ILMotor, ILTransmisi } from '../../../assets';
+import { colors, fonts } from '../../../assets/utils';
 
-const Category = ({category}) => {
+const Category = ({category, onPress}) => {
   const Icon = () => {
     if (category === 'Diesel') {
       return <ILDiesel style={styles.ilustration} />;
@@ -19,11 +19,11 @@ const Category = ({category}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Icon />
       <Text style={styles.label}>Spesialist</Text>
       <Text style={styles.category}>{category}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

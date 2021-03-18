@@ -7,6 +7,11 @@ import UploadPhoto from './UploadPhoto';
 import Home from './Home';
 import Messages from './Messages';
 import Profile from './Profile';
+import ChooseMechanic from './ChooseMechanic';
+import Chatting from './Chatting';
+import UserProfile from './UserProfile';
+import UpdateProfile from './UpdateProfile';
+import MechanicProfile from './MechanicProfile';
 
 export {
   Splash,
@@ -17,4 +22,9 @@ export {
   Home,
   Messages,
   Profile,
+  ChooseMechanic,
+  Chatting,
+  UserProfile,
+  UpdateProfile,
+  MechanicProfile,
 };

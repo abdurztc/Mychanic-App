@@ -14,18 +14,18 @@ const UploadPhoto = ({navigation}) => {
             <Image source={ILNullPhoto} style={styles.avatar} />
             <IconAddPhoto style={styles.addPhoto} />
           </View>
-          <Text style={styles.name}>Alichia Diasuma</Text>
-          <Text style={styles.profession}>Copy Writter</Text>
+          <Text style={styles.name}>Raiden Abdur Rahman</Text>
+          <Text style={styles.profession}>Honda Civic Type R</Text>
         </View>
         <View>
-          <Button title="Upload and Continue" onPress={() => navigation.replace('Home')} />
+          <Button title="Upload and Continue" onPress={() => navigation.replace('MainApp')} />
           <Gap height={30} />
           <Link
             title="Lewati Langkah ini"
             align="center"
             size={16}
             color={colors.text.secondary}
-            onPress={() => navigation.replace('Home')}
+            onPress={() => navigation.replace('MainApp')}
           />
         </View>
       </View>

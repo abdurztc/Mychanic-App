@@ -5,7 +5,11 @@ import HomeProfile from './HomeProfile';
 import Category from './Category';
 import TopMechanical from './TopMechanical';
 import ForYouItem from './ForYouItem';
-import ListMechanic from './ListMechanic';
+import List from './List';
+import ChatItem from './ChatItem';
+import InputChat from './InputChat';
+import Profile from './Profile';
+import ProfileItem from './ProfileItem';
 
 export {
   Header,
@@ -14,5 +18,9 @@ export {
   Category,
   TopMechanical,
   ForYouItem,
-  ListMechanic,
+  ChatItem,
+  InputChat,
+  Profile,
+  List,
+  ProfileItem,
 };

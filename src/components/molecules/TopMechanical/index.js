@@ -1,15 +1,16 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
-import {Dummy1, IconStar} from '../../../assets';
-import {colors, fonts} from '../../../assets/utils';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { IconStar } from '../../../assets';
+import { colors, fonts } from '../../../assets/utils';
 
-const TopMechanical = () => {
+const TopMechanical = ({name, category,avatar, onPress}) => {
   return (
-    <View style={styles.container}>
-      <Image source={Dummy1} style={styles.avatar} />
+    <TouchableOpacity style={styles.container} onPress={onPress}>
+      <Image source={avatar} style={styles.avatar} />
       <View style={styles.profile}>
-        <Text style={styles.name}>Takayama Touma</Text>
-        <Text style={styles.category}>Spesialist Diesel</Text>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.category}>{category}</Text>
       </View>
       <View style={styles.rate}>
         <IconStar />
@@ -17,7 +18,7 @@ const TopMechanical = () => {
         <IconStar />
         <IconStar />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
