@@ -1,12 +1,11 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { showMessage } from 'react-native-flash-message';
-import { ScrollView } from 'react-native-gesture-handler';
-import { useState } from 'react/cjs/react.development';
-import { colors, storeData, useForm } from '../../assets/utils';
-import { Button, Gap, Header, Input, Loading } from '../../components';
-import { FireDB } from '../../config';
+import React, {useState} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {showMessage} from 'react-native-flash-message';
+import {ScrollView} from 'react-native-gesture-handler';
+import {colors, storeData, useForm} from '../../assets/utils';
+import {Button, Gap, Header, Input, Loading} from '../../components';
+import {FireDB} from '../../config';
 
 const Register = ({navigation}) => {
   // const [fullName, setFullName] = useState('');
@@ -25,7 +24,6 @@ const Register = ({navigation}) => {
 
   const onContinue = () => {
     console.log(form);
-
     setLoading(true);
     FireDB.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
@@ -67,29 +65,29 @@ const Register = ({navigation}) => {
             <Input
               label="Full Name"
               value={form.fullName}
-              onChangeText={value => setForm('fullName', value)}
               textTransform="capitalize"
+              onChangeText={value => setForm('fullName', value)}
             />
             <Gap height={24} />
             <Input
               label="Kendaraan Anda"
               value={form.vehicle}
-              onChangeText={value => setForm('vehicle', value)}
               textTransform="capitalize"
+              onChangeText={value => setForm('vehicle', value)}
             />
             <Gap height={24} />
             <Input
               label="Email"
               value={form.email}
-              onChangeText={value => setForm('email', value)}
               textTransform="lowercase"
+              onChangeText={value => setForm('email', value)}
             />
             <Gap height={24} />
             <Input
               label="Password"
               value={form.password}
-              onChangeText={value => setForm('password', value)}
               secureTextEntry={true}
+              onChangeText={value => setForm('password', value)}
             />
             <Gap height={50} />
             <Button title="Continue" onPress={onContinue} />

@@ -9,6 +9,7 @@ const Input = ({
   onChangeText,
   secureTextEntry,
   textTransform,
+  disable,
 }) => {
   const [border, setBorder] = useState(colors.border);
   const onFocusForm = () => {
@@ -28,6 +29,8 @@ const Input = ({
         onChangeText={onChangeText}
         secureTextEntry={secureTextEntry}
         textTransform={textTransform}
+        editable={!disable}
+        selectTextOnFocus={disable}
       />
     </View>
   );
