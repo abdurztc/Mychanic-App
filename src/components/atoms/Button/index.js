@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {colors} from '../../../assets/utils';
 import BtnIconSend from './BtnIconSend';
 import IconOnly from './IconOnly';
@@ -12,6 +12,13 @@ const Button = ({type, title, onPress, icon, disable}) => {
   }
   if (type === 'icon-only') {
     return <IconOnly icon={icon} onPress={onPress} />;
+  }
+  if (disable) {
+    return (
+      <View style={styles.disableBg}>
+        <Text style={styles.disableText}>{title}</Text>
+      </View>
+    );
   }
   return (
     <TouchableOpacity style={styles.container(type)} onPress={onPress}>
@@ -41,4 +48,16 @@ const styles = StyleSheet.create({
         ? colors.button.secondary.text
         : colors.button.primary.text,
   }),
+  disableBg: {
+    paddingVertical: 10,
+    borderRadius: 10,
+    backgroundColor: colors.button.disable.background,
+  },
+  disableText: {
+    fontSize: 18,
+
+    fontFamily: 'Nunito-SemiBold',
+    textAlign: 'center',
+    color: colors.button.disable.text,
+  },
 });

@@ -1,16 +1,33 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Dummy1} from '../../../assets';
-import {colors, fonts} from '../../../assets/utils';
+import React, { useEffect } from 'react';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useState } from 'react/cjs/react.development';
+import { ILNullPhoto } from '../../../assets';
+import { colors, fonts, getData } from '../../../assets/utils';
 
 const HomeProfile = ({onPress}) => {
+  const [profile, setProfile] = useState({
+    photo: ILNullPhoto,
+    fullName: '',
+    vehicle: '',
+  });
+
+  useEffect(() => {
+    getData('user').then(res => {
+      console.log('data user: ', res);
+      const data = res;
+      data.photo = {uri: res.photo};
+      console.log('new profile: ', data);
+      setProfile(res);
+    });
+  }, []);
+
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Image source={Dummy1} style={styles.avatar} />
+      <Image source={profile.photo} style={styles.avatar} />
       <View>
-        <Text style={styles.name}>Howdy Abdur SubKhi </Text>
-        <Text style={styles.vehicle}>HONDA CIVIC </Text>
+        <Text style={styles.name}>{profile.fullName}</Text>
+        <Text style={styles.vehicle}>{profile.vehicle}</Text>
       </View>
     </TouchableOpacity>
   );

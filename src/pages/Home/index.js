@@ -1,8 +1,9 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
+import {useEffect} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {Dummy2, Dummy3, Dummy4, JSONCategoryMechanic} from '../../assets';
-import {colors, fonts} from '../../assets/utils';
+import {colors, fonts, getData} from '../../assets/utils';
 import {
   Category,
   ForYouItem,
@@ -12,6 +13,11 @@ import {
 } from '../../components';
 
 const Home = ({navigation}) => {
+  useEffect(() => {
+    getData('user').then(res => {
+      console.log('data user: ', res);
+    });
+  });
   return (
     <View style={styles.page}>
       <View style={styles.content}>

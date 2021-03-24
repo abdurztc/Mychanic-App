@@ -6,7 +6,7 @@ import Login from './Login';
 import UploadPhoto from './UploadPhoto';
 import Home from './Home';
 import Messages from './Messages';
-import Profile from './Profile';
+
 import ChooseMechanic from './ChooseMechanic';
 import Chatting from './Chatting';
 import UserProfile from './UserProfile';
@@ -21,7 +21,6 @@ export {
   UploadPhoto,
   Home,
   Messages,
-  Profile,
   ChooseMechanic,
   Chatting,
   UserProfile,
