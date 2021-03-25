@@ -2,9 +2,9 @@
 
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {StyleSheet, Text, View, ImageBackground} from 'react-native';
+import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {ILGetStarted, ILLogo} from '../../assets';
-import { colors, fonts } from '../../assets/utils';
+import {colors, fonts} from '../../assets/utils';
 import {Button, Gap} from '../../components';
 
 const GetStarted = ({navigation}) => {
