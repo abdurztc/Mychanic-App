@@ -1,19 +1,19 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
-import {Dummy1} from '../../../assets';
-import {colors, fonts} from '../../../assets/utils';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { colors, fonts } from '../../../assets/utils';
 
-const ForYouItem = () => {
+const ForYouItem = ({title, date, image}) => {
   return (
-    <View style={styles.container}>
-      <Image source={Dummy1} style={styles.image} />
+    <TouchableOpacity style={styles.container}>
+      <Image source={{ uri:image }} style={styles.image} />
       <View style={styles.titleWrapper}>
         <Text style={styles.title}>
-          Tips membersihkan ruang mesin di musim hujan{' '}
+          {title}
         </Text>
-        <Text style={styles.date}>Today</Text>
+        <Text style={styles.date}>{date}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -24,16 +24,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: colors.border,
-    paddingBottom:12,
+    paddingBottom: 12,
     paddingTop: 16,
-    paddingHorizontal: 16
+    paddingHorizontal: 16,
   },
   titleWrapper: {flex: 1},
   title: {
     fontSize: 16,
     fontFamily: fonts.primary[600],
     color: colors.text.primary,
-    maxWidth: '90%'
+    maxWidth: '90%',
   },
   date: {
     fontSize: 12,
@@ -45,6 +45,6 @@ const styles = StyleSheet.create({
     width: 80,
     height: 60,
     borderRadius: 11,
-    marginRight: 12
+    marginRight: 12,
   },
 });

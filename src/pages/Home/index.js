@@ -1,9 +1,7 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
-import {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {Dummy2, Dummy3, Dummy4, JSONCategoryMechanic} from '../../assets';
-import {colors, fonts, getData} from '../../assets/utils';
+import {colors, fonts, showError} from '../../assets/utils';
 import {
   Category,
   ForYouItem,
@@ -11,13 +9,72 @@ import {
   HomeProfile,
   TopMechanical,
 } from '../../components';
+import {FireDB} from '../../config';
 
 const Home = ({navigation}) => {
+  const [news, setNews] = useState([]);
+  const [categoryMechanic, setCategoryMechanic] = useState([]);
+  const [mechanics, setMechanics] = useState([]);
   useEffect(() => {
-    getData('user').then(res => {
-      console.log('data user: ', res);
-    });
-  });
+    getCategoryMechanic();
+    getTopMechanical();
+    getForYouItem();
+  }, []);
+
+  const getTopMechanical = () => {
+    FireDB.database()
+      .ref('mechanics/')
+      .orderByChild('rate')
+      .limitToLast(3)
+      .once('value')
+      .then(res => {
+        console.log('top mekanik: ', res.val());
+        if (res.val()) {
+          const oldData = res.val();
+          const data = [];
+          Object.keys(oldData).map(key => {
+            data.push({
+              id: key,
+              data: oldData[key],
+            });
+          });
+          console.log('data parse: ', data);
+          setMechanics(data);
+        }
+      })
+      .catch(err => {
+        showError(err.message);
+      });
+  };
+
+  const getForYouItem = () => {
+    FireDB.database()
+      .ref('news/')
+      .once('value')
+      .then(res => {
+        console.log('news: ', res.val());
+        if (res.val()) {
+          setNews(res.val());
+        }
+      })
+      .catch(err => {
+        showError(err.message);
+      });
+  };
+  const getCategoryMechanic = () => {
+    FireDB.database()
+      .ref('category_mechanic/')
+      .once('value')
+      .then(res => {
+        console.log('category mekanik: ', res.val());
+        if (res.val()) {
+          setCategoryMechanic(res.val());
+        }
+      })
+      .catch(err => {
+        showError(err.message);
+      });
+  };
   return (
     <View style={styles.page}>
       <View style={styles.content}>
@@ -35,7 +92,7 @@ const Home = ({navigation}) => {
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               <View style={styles.category}>
                 <Gap width={32} />
-                {JSONCategoryMechanic.data.map(item => {
+                {categoryMechanic.map(item => {
                   return (
                     <Category
                       key={item.id}
@@ -50,30 +107,30 @@ const Home = ({navigation}) => {
           </View>
           <View style={styles.wrapperSection}>
             <Text style={styles.sectionLabel}>Our Top mechanical</Text>
-            <TopMechanical
-              name="Steffi"
-              category="Spesialist Diesel"
-              avatar={Dummy2}
-              onPress={() => navigation.navigate('MechanicProfile')}
-            />
-            <TopMechanical
-              name="Dasha"
-              category="Spesialist Diesel"
-              avatar={Dummy3}
-              onPress={() => navigation.navigate('MechanicProfile')}
-            />
-            <TopMechanical
-              name="Yupy"
-              category="Spesialist Diesel"
-              avatar={Dummy4}
-              onPress={() => navigation.navigate('MechanicProfile')}
-            />
+            {mechanics.map(mechanic => {
+              return (
+                <TopMechanical
+                  key={mechanic.id}
+                  name={mechanic.data.fullName}
+                  category={mechanic.data.category}
+                  avatar={{uri: mechanic.data.photo}}
+                  onPress={() => navigation.navigate('MechanicProfile')}
+                />
+              );
+            })}
+
             <Text style={styles.sectionLabel}>Good News for you</Text>
           </View>
-
-          <ForYouItem />
-          <ForYouItem />
-          <ForYouItem />
+          {news.map(item => {
+            return (
+              <ForYouItem
+                key={item.id}
+                title={item.title}
+                date={item.date}
+                image={item.image}
+              />
+            );
+          })}
           <Gap height={30} />
         </ScrollView>
       </View>
