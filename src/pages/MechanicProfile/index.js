@@ -4,16 +4,17 @@ import {StyleSheet, View} from 'react-native';
 import {colors} from '../../assets/utils';
 import {Button, Gap, Header, Profile, ProfileItem} from '../../components';
 
-const MechanicProfile = ({navigation}) => {
+const MechanicProfile = ({navigation, route}) => {
+  const dataMechanic = route.params;
   return (
     <View style={styles.page}>
       <Header title="Info Mekanik" onPress={() => navigation.goBack()} />
       <Gap height={10} />
-      <Profile name="Yuvia" desc="Spesialist Diesel" />
+      <Profile name={dataMechanic.data.fullName} desc={dataMechanic.data.category} photo={{ uri:dataMechanic.data.photo }}/>
       <Gap height={10} />
-      <ProfileItem label="Pendidikan" value="Toyota Akademi" />
-      <ProfileItem label="Pengalaman" value="Astra Otopart" />
-      <ProfileItem label="No. ID" value="00098989012" />
+      <ProfileItem label="Pendidikan" value={dataMechanic.data.pendidikan} />
+      <ProfileItem label="Pengalaman" value={dataMechanic.data.experience} />
+      <ProfileItem label="No. ID" value={dataMechanic.data.No_ID} />
       <View style={styles.action}>
         <Button
           title="Mulai Konsultasi"

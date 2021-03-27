@@ -1,7 +1,4 @@
 /* eslint-disable prettier/prettier */
-
-/* eslint-disable prettier/prettier */
-
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {colors} from '../../../assets/utils';
@@ -10,7 +7,7 @@ import DarkProfile from './DarkProfile';
 
 const Header = ({onPress, title, type}) => {
   if (type === 'dark-profile') {
-    return <DarkProfile onPress={onPress}/>;
+    return <DarkProfile onPress={onPress} />;
   }
   return (
     <View style={styles.container(type)}>
@@ -43,5 +40,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Nunito-SemiBold',
     color: type === 'dark' ? colors.white : colors.text.primary,
+
   }),
 });

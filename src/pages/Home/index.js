@@ -28,7 +28,6 @@ const Home = ({navigation}) => {
       .limitToLast(3)
       .once('value')
       .then(res => {
-        console.log('top mekanik: ', res.val());
         if (res.val()) {
           const oldData = res.val();
           const data = [];
@@ -38,7 +37,6 @@ const Home = ({navigation}) => {
               data: oldData[key],
             });
           });
-          console.log('data parse: ', data);
           setMechanics(data);
         }
       })
@@ -52,9 +50,11 @@ const Home = ({navigation}) => {
       .ref('news/')
       .once('value')
       .then(res => {
-        console.log('news: ', res.val());
         if (res.val()) {
-          setNews(res.val());
+          const data = res.val();
+          const filterData = data.filter(el => el !== null);
+          console.log('data news filter: ', filterData);
+          setNews(filterData);
         }
       })
       .catch(err => {
@@ -66,9 +66,10 @@ const Home = ({navigation}) => {
       .ref('category_mechanic/')
       .once('value')
       .then(res => {
-        console.log('category mekanik: ', res.val());
         if (res.val()) {
-          setCategoryMechanic(res.val());
+          const data = res.val();
+          const filterData = data.filter(el => el !== null);
+          setCategoryMechanic(filterData);
         }
       })
       .catch(err => {
@@ -97,7 +98,9 @@ const Home = ({navigation}) => {
                     <Category
                       key={item.id}
                       category={item.category}
-                      onPress={() => navigation.navigate('ChooseMechanic')}
+                      onPress={() =>
+                        navigation.navigate('ChooseMechanic', item)
+                      }
                     />
                   );
                 })}
@@ -114,7 +117,9 @@ const Home = ({navigation}) => {
                   name={mechanic.data.fullName}
                   category={mechanic.data.category}
                   avatar={{uri: mechanic.data.photo}}
-                  onPress={() => navigation.navigate('MechanicProfile')}
+                  onPress={() =>
+                    navigation.navigate('MechanicProfile', mechanic)
+                  }
                 />
               );
             })}
