@@ -52,8 +52,7 @@ const Home = ({navigation}) => {
       .then(res => {
         if (res.val()) {
           const data = res.val();
-          const filterData = data.filter(el => el !== null);
-          console.log('data news filter: ', filterData);
+          const filterData = data.filter((el) => el !== null);
           setNews(filterData);
         }
       })
@@ -68,7 +67,8 @@ const Home = ({navigation}) => {
       .then(res => {
         if (res.val()) {
           const data = res.val();
-          const filterData = data.filter(el => el !== null);
+          const filterData = data.filter((el) => el !== null);
+          // console.log('data category hasil filter: ', filterData);
           setCategoryMechanic(filterData);
         }
       })

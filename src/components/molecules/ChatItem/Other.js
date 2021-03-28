@@ -1,18 +1,17 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
-import {Dummy3} from '../../../assets';
-import {colors, fonts} from '../../../assets/utils';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import { colors, fonts } from '../../../assets/utils';
 
-const Other = () => {
+const Other = ({text, date, photo}) => {
   return (
     <View style={styles.container}>
-      <Image source={Dummy3} style={styles.avatar} />
+      <Image source={photo} style={styles.avatar} />
       <View>
         <View style={styles.chatContent}>
-          <Text style={styles.text}>Selamat Siang juga</Text>
+          <Text style={styles.text}>{text}</Text>
         </View>
-        <Text style={styles.date}>21.10 PM</Text>
+        <Text style={styles.date}>{date}</Text>
       </View>
     </View>
   );
@@ -32,7 +31,7 @@ const styles = StyleSheet.create({
     padding: 12,
     paddingRight: 18,
     backgroundColor: colors.primary,
-    maxWidth: '80%',
+    // maxWidth: '70%',
     borderRadius: 10,
     borderBottomLeftRadius: 0,
   },

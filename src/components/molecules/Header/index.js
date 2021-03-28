@@ -5,9 +5,11 @@ import {colors} from '../../../assets/utils';
 import {Button, Gap} from '../../atoms';
 import DarkProfile from './DarkProfile';
 
-const Header = ({onPress, title, type}) => {
+const Header = ({onPress, title, desc, type, photo}) => {
   if (type === 'dark-profile') {
-    return <DarkProfile onPress={onPress} />;
+    return (
+      <DarkProfile onPress={onPress} title={title} desc={desc} photo={photo} />
+    );
   }
   return (
     <View style={styles.container(type)}>
@@ -16,7 +18,7 @@ const Header = ({onPress, title, type}) => {
         icon={type === 'dark' ? 'back-light' : 'back-dark'}
         onPress={onPress}
       />
-      <Text style={styles.text(type)}>{title} </Text>
+      <Text style={styles.text(type)}> {title} </Text>
       <Gap width={24} />
     </View>
   );
@@ -40,6 +42,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Nunito-SemiBold',
     color: type === 'dark' ? colors.white : colors.text.primary,
-
   }),
 });

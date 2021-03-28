@@ -1,15 +1,21 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {ICSendDark, ICSendLight} from '../../../assets';
 import {colors} from '../../../assets/utils';
 
-const BtnIconSend = ({disable}) => {
+const BtnIconSend = ({disable, onPress}) => {
+  if (disable) {
+    return (
+      <View style={styles.container(disable)}>
+        <ICSendDark />
+      </View>
+    );
+  }
   return (
-    <View style={styles.container(disable)}>
-      {disable && <ICSendDark />}
-      {!disable && <ICSendLight />}
-    </View>
+    <TouchableOpacity style={styles.container(disable)} onPress={onPress}>
+      <ICSendLight />
+    </TouchableOpacity>
   );
 };
 

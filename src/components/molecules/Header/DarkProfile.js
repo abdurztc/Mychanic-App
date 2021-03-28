@@ -1,19 +1,18 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Dummy3} from '../../../assets';
-import {colors, fonts} from '../../../assets/utils';
-import {Button} from '../../atoms';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import { colors, fonts } from '../../../assets/utils';
+import { Button } from '../../atoms';
 
-const DarkProfile = ({onPress, navigation}) => {
+const DarkProfile = ({onPress, title, desc, photo}) => {
   return (
     <View style={styles.container}>
       <Button type="icon-only" icon="back-light" onPress={onPress} />
       <View style={styles.content}>
-        <Text style={styles.name}>Dasha Taraan</Text>
-        <Text style={styles.desc}>Spesialist Diesel</Text>
+        <Text style={styles.name}>{title}</Text>
+        <Text style={styles.desc}>{desc}</Text>
       </View>
-      <Image source={Dummy3} style={styles.avatar} />
+      <Image source={photo} style={styles.avatar} />
     </View>
   );
 };

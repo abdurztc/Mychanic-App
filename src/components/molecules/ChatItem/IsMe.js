@@ -3,13 +3,13 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import { colors, fonts } from '../../../assets/utils';
 
-const IsMe = () => {
+const IsMe = ({text, date}) => {
   return (
     <TouchableOpacity style={styles.container}>
       <View style={styles.chatContent}>
-        <Text style={styles.text}>Selamat Siang Pak, saya mau tanya</Text>
+        <Text style={styles.text}>{text}</Text>
       </View>
-      <Text style={styles.date}>21.10 PM</Text>
+      <Text style={styles.date}>{date}</Text>
     </TouchableOpacity>
   );
 };

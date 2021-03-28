@@ -18,7 +18,7 @@ const MechanicProfile = ({navigation, route}) => {
       <View style={styles.action}>
         <Button
           title="Mulai Konsultasi"
-          onPress={() => navigation.navigate('Chatting')}
+          onPress={() => navigation.navigate('Chatting', dataMechanic)}
         />
       </View>
     </View>

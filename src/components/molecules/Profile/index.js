@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     color: colors.text.primary,
     marginTop: 16,
     textAlign: 'center',
+    textTransform: 'capitalize',
   },
   desc: {
     fontSize: 16,
@@ -63,6 +64,7 @@ const styles = StyleSheet.create({
     color: colors.text.secondary,
     marginTop: 2,
     textAlign: 'center',
+    textTransform: 'capitalize',
   },
   removePhoto: {
     position: 'absolute',
