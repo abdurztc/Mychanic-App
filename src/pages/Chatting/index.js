@@ -69,6 +69,18 @@ const Chatting = ({navigation, route}) => {
     const urlFirebase = `chatting/${chatusernmechanicByID}/allChat/${setDateChat(
       today,
     )}`;
+    const urlMessagesUser = `messages/${user.uid}/${chatusernmechanicByID}`;
+    const urlMessagesMechanic = `messages/${dataMechanic.uid}/${chatusernmechanicByID}`;
+    const dataHistoryChatForUser = {
+      lastContentChat: chatContent,
+      lastChatDate: today.getTime(today),
+      uidPartner: dataMechanic.data.uid,
+    };
+    const dataHistoryChatForMechanic = {
+      lastContentChat: chatContent,
+      lastChatDate: today.getTime(today),
+      uidPartner: dataMechanic.data.uid,
+    };
     // console.log('data untuk dikirim: ', data);
     setChatContent('');
     FireDB.database()
@@ -76,6 +88,13 @@ const Chatting = ({navigation, route}) => {
       .push(data)
       .then(res => {
         setChatContent('');
+        FireDB.database()
+          .ref(urlMessagesUser)
+          .set(dataHistoryChatForUser);
+
+        FireDB.database()
+          .ref(urlMessagesMechanic)
+          .set(dataHistoryChatForMechanic);
       })
       .catch(err => {
         showError(err.message);

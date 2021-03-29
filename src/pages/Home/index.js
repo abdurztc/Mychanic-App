@@ -25,7 +25,7 @@ const Home = ({navigation}) => {
     FireDB.database()
       .ref('mechanics/')
       .orderByChild('rate')
-      .limitToLast(3)
+      .limitToLast(5)
       .once('value')
       .then(res => {
         if (res.val()) {

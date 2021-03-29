@@ -10,7 +10,8 @@ import Router from './router';
 
 const MainApp = () => {
   const stateGlobal = useSelector(state => state);
-  LogBox.ignoreAllLogs(['Setting a timer']);
+  LogBox.ignoreLogs(['Setting a timer']);
+  LogBox.ignoreLogs(['Remote debugger']);
   return (
     <>
       <NavigationContainer>
