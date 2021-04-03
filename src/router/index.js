@@ -1,21 +1,23 @@
 /* eslint-disable prettier/prettier */
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import {ButtomNavigator} from '../components';
+import { ButtomNavigator } from '../components';
 import {
+  Chatting,
   ChooseMechanic,
   GetStarted,
   Home,
   Login,
+  MechanicProfile,
   Messages,
-  UserProfile,
   Register,
   Splash,
-  UploadPhoto,
-  Chatting,
   UpdateProfile,
-  MechanicProfile,
+  UploadPhoto,
+  UserProfile,
+  UserProfileTab
+,
 } from '../pages';
 
 const Stack = createStackNavigator();
@@ -26,7 +28,7 @@ const MainApp = () => {
     <Tab.Navigator tabBar={props => <ButtomNavigator {...props} />}>
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="Chat" component={Messages} />
-      <Tab.Screen name="Profile" component={UserProfile} />
+      <Tab.Screen name="Profile" component={UserProfileTab} />
     </Tab.Navigator>
   );
 };
@@ -77,6 +79,11 @@ const Router = () => {
       <Stack.Screen
         name="UserProfile"
         component={UserProfile}
+        options={{headerShown: false}}
+      />
+        <Stack.Screen
+        name="UserProfileTab"
+        component={UserProfileTab}
         options={{headerShown: false}}
       />
       <Stack.Screen

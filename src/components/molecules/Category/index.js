@@ -9,7 +9,7 @@ const Category = ({category, onPress}) => {
     if (category === 'Diesel') {
       return <ILDiesel style={styles.ilustration} />;
     }
-    if (category === 'Motor') {
+    if (category === 'Motor Matic') {
       return <ILMotor style={styles.ilustration} />;
     }
     if (category === 'Transmisi') {

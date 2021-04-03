@@ -6,7 +6,7 @@ import Login from './Login';
 import UploadPhoto from './UploadPhoto';
 import Home from './Home';
 import Messages from './Messages';
-
+import UserProfileTab from './UserProfileTab';
 import ChooseMechanic from './ChooseMechanic';
 import Chatting from './Chatting';
 import UserProfile from './UserProfile';
@@ -26,4 +26,5 @@ export {
   UserProfile,
   UpdateProfile,
   MechanicProfile,
+  UserProfileTab,
 };

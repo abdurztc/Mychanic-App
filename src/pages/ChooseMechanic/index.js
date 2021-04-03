@@ -29,7 +29,7 @@ const ChooseMechanic = ({navigation, route}) => {
               data: oldData[item],
             });
           });
-          console.log('parse list mekanik: ', data);
+          // console.log('parse list mekanik: ', data);
           setListMechanic(data);
         }
       });

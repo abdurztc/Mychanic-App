@@ -1,24 +1,22 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { useState } from 'react/cjs/react.development';
-import { ILNullPhoto } from '../../../assets';
-import { colors, fonts, getData } from '../../../assets/utils';
+import { colors, fonts } from '../../../assets/utils';
 
-const HomeProfile = ({onPress}) => {
-  const [profile, setProfile] = useState({
-    photo: ILNullPhoto,
-    fullName: '',
-    vehicle: '',
-  });
+const HomeProfile = ({onPress, profile}) => {
+  // const [profile, setProfile] = useState({
+  //   photo: ILNullPhoto,
+  //   fullName: '',
+  //   vehicle: '',
+  // });
 
-  useEffect(() => {
-    getData('user').then(res => {
-            const data = res;
-      data.photo = {uri: res.photo};
-           setProfile(res);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getData('user').then(res => {
+  //           const data = res;
+  //     data.photo = {uri: res.photo};
+  //          setProfile(res);
+  //   });
+  // }, []);
 
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>

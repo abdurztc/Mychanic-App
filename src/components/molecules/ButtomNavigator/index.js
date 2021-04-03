@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {colors} from '../../../assets/utils';
-import {TabItem} from '../../atoms';
+import { StyleSheet, View } from 'react-native';
+import { colors } from '../../../assets/utils';
+import { TabItem } from '../../atoms';
 
 const ButtomNavigator = ({state, descriptors, navigation}) => {
   return (
@@ -39,6 +39,7 @@ const ButtomNavigator = ({state, descriptors, navigation}) => {
 
         return (
           <TabItem
+          key={index}
             title={label}
             active={isFocused}
             onPress={onPress}

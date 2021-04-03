@@ -1,30 +1,31 @@
+/* eslint-disable eslint-comments/no-unused-disable */
 /* eslint-disable prettier/prettier */
 /* eslint-disable eslint-comments/no-unused-disable */
 /* eslint-disable prettier/prettier */
 // eslint-disable-next-line eslint-comments/no-unused-disable
 /* eslint-disable no-unused-vars */
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
-import { colors } from '../../assets/utils';
+import { ILNullPhoto } from '../../assets';
+import { colors, getData } from '../../assets/utils';
 import { Gap, Header, List, Profile } from '../../components';
 import { FireDB } from '../../config';
 
-const UserProfile = ({navigation, route}) => {
-  const profile = route.params;
-  // const [profile, setProfile] = useState({
-  //   fullName: '',
-  //   vehicle: '',
-  //   photo: ILNullPhoto,
-  // });
-  // useEffect(() => {
-  //   getData('user').then(res => {
-  //     const data = res;
-  //     data.photo = {uri: res.photo};
-  //     setProfile(data);
-  //   });
-  // });
+const UserProfileTab = ({navigation}) => {
+  const [profile, setProfile] = useState({
+    fullName: '',
+    vehicle: '',
+    photo: ILNullPhoto,
+  });
+  useEffect(() => {
+    getData('user').then(res => {
+      const data = res;
+      data.photo = {uri: res.photo};
+      setProfile(data);
+    });
+  });
   const signOut = () => {
     FireDB.auth()
       .signOut()
@@ -77,7 +78,7 @@ const UserProfile = ({navigation, route}) => {
   );
 };
 
-export default UserProfile;
+export default UserProfileTab;
 
 const styles = StyleSheet.create({
   page: {

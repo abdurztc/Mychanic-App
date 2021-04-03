@@ -1,13 +1,13 @@
 /* eslint-disable prettier/prettier */
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { showMessage } from 'react-native-flash-message';
-import { ScrollView } from 'react-native-gesture-handler';
-import { launchImageLibrary } from 'react-native-image-picker';
-import { ILNullPhoto } from '../../assets';
-import { colors, getData, storeData } from '../../assets/utils';
-import { Button, Gap, Header, Input, Profile } from '../../components';
-import { FireDB } from '../../config';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {showMessage} from 'react-native-flash-message';
+import {ScrollView} from 'react-native-gesture-handler';
+import {launchImageLibrary} from 'react-native-image-picker';
+import {ILNullPhoto} from '../../assets';
+import {colors, getData, showError, storeData} from '../../assets/utils';
+import {Button, Gap, Header, Input, Profile} from '../../components';
+import {FireDB} from '../../config';
 
 const UpdateProfile = ({navigation}) => {
   const [profile, setProfile] = useState({
@@ -19,18 +19,27 @@ const UpdateProfile = ({navigation}) => {
   const [photo, setPhoto] = useState(ILNullPhoto);
   const [PhotoForDB, setPhotoForDB] = useState('');
 
+  // useEffect(() => {
+  //   getData('user').then(res => {
+  //     const data = res;
+  //     setPhoto({uri: res.photo});
+  //     setProfile(data);
+  //   });
+  // }, []);
   useEffect(() => {
     getData('user').then(res => {
       const data = res;
-      setPhoto({uri: res.photo});
+      data.photoForDB = res?.photo?.length > 1 ? res.photo : ILNullPhoto;
+      const tempPhoto = res?.photo?.length > 1 ? {uri: res.photo} : ILNullPhoto;
+      setPhoto(tempPhoto);
       setProfile(data);
     });
   }, []);
 
   const update = () => {
-    console.log('profile: ', profile);
+    // console.log('profile: ', profile);
 
-    console.log('new Password: ', password);
+    // console.log('new Password: ', password);
 
     if (password.length > 0) {
       if (password.length < 6) {
@@ -71,8 +80,14 @@ const UpdateProfile = ({navigation}) => {
       .ref(`users/${profile.uid}/`)
       .update(data)
       .then(() => {
-        console.log('success: ');
-        storeData('user', data);
+        // console.log('success: ');
+        storeData('user', data)
+          .then(() => {
+            navigation.replace('MainApp');
+          })
+          .catch(() => {
+            showError('Uupps terjadi masalah');
+          });
       })
       .catch(err => {
         showMessage({

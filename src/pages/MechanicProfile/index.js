@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import {colors} from '../../assets/utils';
 import {Button, Gap, Header, Profile, ProfileItem} from '../../components';
 
@@ -10,7 +11,8 @@ const MechanicProfile = ({navigation, route}) => {
     <View style={styles.page}>
       <Header title="Info Mekanik" onPress={() => navigation.goBack()} />
       <Gap height={10} />
-      <Profile name={dataMechanic.data.fullName} desc={dataMechanic.data.category} photo={{ uri:dataMechanic.data.photo }}/>
+      <ScrollView>
+        <Profile name={dataMechanic.data.fullName} desc={dataMechanic.data.category} photo={{ uri:dataMechanic.data.photo }}/>
       <Gap height={10} />
       <ProfileItem label="Pendidikan" value={dataMechanic.data.pendidikan} />
       <ProfileItem label="Pengalaman" value={dataMechanic.data.experience} />
@@ -21,7 +23,8 @@ const MechanicProfile = ({navigation, route}) => {
           onPress={() => navigation.navigate('Chatting', dataMechanic)}
         />
       </View>
-    </View>
+      </ScrollView>
+          </View>
   );
 };
 

@@ -35,7 +35,7 @@ const Messages = ({navigation}) => {
           });
         });
         await Promise.all(promises);
-        console.log('new data history : ', data);
+        // console.log('new data history : ', data);
         setHistoryChat(data);
       }
     });
@@ -50,7 +50,7 @@ const Messages = ({navigation}) => {
     <View style={styles.page}>
       <View style={styles.content}>
         <Text style={styles.title}>Chat History</Text>
-        {historyChat.map(chat => {
+        {historyChat.map((chat) => {
           const dataMechanic = {
             id: chat.detailMechanic.uid,
             data: chat.detailMechanic,

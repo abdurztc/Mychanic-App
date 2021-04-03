@@ -8,17 +8,17 @@ import {FireDB} from '../../config';
 
 const Splash = ({navigation}) => {
   useEffect(() => {
-    const clear = FireDB.auth().onAuthStateChanged((user) => {
+    const unsubscribe = FireDB.auth().onAuthStateChanged(user=> {
       setTimeout(() => {
         if (user) {
           navigation.replace('MainApp');
         } else {
           navigation.replace('GetStarted');
         }
-      }, 3000);
+      }, 2000);
     });
 
-    return () => clear();
+    return () => unsubscribe();
   }, [navigation]);
   return (
     <View style={styles.page}>

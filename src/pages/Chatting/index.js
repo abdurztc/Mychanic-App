@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Alert, StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {
   colors,
@@ -16,6 +16,7 @@ import {FireDB} from '../../config';
 const Chatting = ({navigation, route}) => {
   const dataMechanic = route.params;
   const [chatContent, setChatContent] = useState('');
+  const [delchatContent, deleteChatContent] = useState('');
   const [user, setUser] = useState({});
   const [chatData, setChatData] = useState([]);
 
@@ -99,6 +100,24 @@ const Chatting = ({navigation, route}) => {
       .catch(err => {
         showError(err.message);
       });
+      // deleteChatContent('');
+      // FireDB.database()
+      //   .ref(urlFirebase)
+      //   .remove(data)
+      //   .then(res => {
+      //     setChatContent('');
+      //     FireDB.database()
+      //       .ref(urlMessagesUser)
+      //       .set(dataHistoryChatForUser);
+  
+      //     FireDB.database()
+      //       .ref(urlMessagesMechanic)
+      //       .set(dataHistoryChatForMechanic);
+      //   })
+      //   .catch(err => {
+      //     showError(err.message);
+      //   });
+
   };
   return (
     <View style={styles.page}>
@@ -124,6 +143,7 @@ const Chatting = ({navigation, route}) => {
                       text={itemChat.data.chatContent}
                       date={itemChat.data.chatTime}
                       photo={isMe ? null : {uri: dataMechanic.data.photo}}
+                      onLongPress={delchatContent}
                     />
                   );
                 })}

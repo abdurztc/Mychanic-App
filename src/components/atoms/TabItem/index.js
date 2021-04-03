@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import {
@@ -6,7 +7,7 @@ import {
     IconHome,
     IconHomeActive,
     IconProfile,
-    IconProfileActive
+    IconProfileActive,
 } from '../../../assets';
 import { colors, fonts } from '../../../assets/utils';
 

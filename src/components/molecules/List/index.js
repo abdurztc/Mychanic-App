@@ -1,13 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {
-  ICNext,
-  IconHelp,
-  IconLanguage,
-  IconRate,
-  IconEditProfile,
-} from '../../../assets';
+import {ICNext, IconEditProfile, IconHelp} from '../../../assets';
 import {colors, fonts} from '../../../assets/utils';
 
 const List = ({profile, name, desc, type, onPress, icon}) => {
@@ -15,12 +9,7 @@ const List = ({profile, name, desc, type, onPress, icon}) => {
     if (icon === 'edit-profile') {
       return <IconEditProfile />;
     }
-    if (icon === 'language') {
-      return <IconLanguage />;
-    }
-    if (icon === 'rate') {
-      return <IconRate />;
-    }
+
     if (icon === 'sign-out') {
       return <IconHelp />;
     }
@@ -60,6 +49,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: fonts.primary.normal,
     color: colors.text.primary,
+    paddingTop: 20,
   },
   desc: {
     fontSize: 12,

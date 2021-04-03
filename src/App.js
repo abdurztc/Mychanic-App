@@ -12,6 +12,7 @@ const MainApp = () => {
   const stateGlobal = useSelector(state => state);
   LogBox.ignoreLogs(['Setting a timer']);
   LogBox.ignoreLogs(['Remote debugger']);
+  LogBox.ignoreAllLogs(['Warning: Each', 'Warning: Failed']);
   return (
     <>
       <NavigationContainer>

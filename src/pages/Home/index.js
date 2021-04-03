@@ -1,7 +1,8 @@
 /* eslint-disable prettier/prettier */
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {colors, fonts, showError} from '../../assets/utils';
+import {ILNullPhoto} from '../../assets';
+import {colors, fonts, getData, showError} from '../../assets/utils';
 import {
   Category,
   ForYouItem,
@@ -15,17 +16,26 @@ const Home = ({navigation}) => {
   const [news, setNews] = useState([]);
   const [categoryMechanic, setCategoryMechanic] = useState([]);
   const [mechanics, setMechanics] = useState([]);
+  const [profile, setProfile] = useState({
+    photo: ILNullPhoto,
+    fullName: '',
+    profession: '',
+  });
+
   useEffect(() => {
     getCategoryMechanic();
     getTopMechanical();
     getForYouItem();
-  }, []);
+    navigation.addListener('focus', () => {
+      getUserData();
+    });
+  }, [navigation]);
 
   const getTopMechanical = () => {
     FireDB.database()
       .ref('mechanics/')
       .orderByChild('rate')
-      .limitToLast(5)
+      .limitToLast(3)
       .once('value')
       .then(res => {
         if (res.val()) {
@@ -52,7 +62,7 @@ const Home = ({navigation}) => {
       .then(res => {
         if (res.val()) {
           const data = res.val();
-          const filterData = data.filter((el) => el !== null);
+          const filterData = data.filter(el => el !== null);
           setNews(filterData);
         }
       })
@@ -67,7 +77,7 @@ const Home = ({navigation}) => {
       .then(res => {
         if (res.val()) {
           const data = res.val();
-          const filterData = data.filter((el) => el !== null);
+          const filterData = data.filter(el => el !== null);
           // console.log('data category hasil filter: ', filterData);
           setCategoryMechanic(filterData);
         }
@@ -76,13 +86,23 @@ const Home = ({navigation}) => {
         showError(err.message);
       });
   };
+  const getUserData = () => {
+    getData('user').then(res => {
+      const data = res;
+      data.photo = res?.photo?.length > 1 ? {uri: res.photo} : ILNullPhoto;
+      setProfile(res);
+    });
+  };
   return (
     <View style={styles.page}>
       <View style={styles.content}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.wrapperSection}>
             <Gap height={30} />
-            <HomeProfile onPress={() => navigation.navigate('UserProfile')} />
+            <HomeProfile
+              profile={profile}
+              onPress={() => navigation.navigate('UserProfile', profile)}
+            />
             <Text style={styles.welcome}>
               Ayo konsultasi masalah kendaraan dengan mekanikmu
             </Text>
@@ -96,7 +116,7 @@ const Home = ({navigation}) => {
                 {categoryMechanic.map(item => {
                   return (
                     <Category
-                      key={item.id}
+                    key={`category-${item.id}`}
                       category={item.category}
                       onPress={() =>
                         navigation.navigate('ChooseMechanic', item)
@@ -129,10 +149,11 @@ const Home = ({navigation}) => {
           {news.map(item => {
             return (
               <ForYouItem
-                key={item.id}
+              key={`news-${item.id}`}
                 title={item.title}
                 date={item.date}
                 image={item.image}
+                url={{uri: item.url}}
               />
             );
           })}

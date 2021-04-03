@@ -3,9 +3,9 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import { colors, fonts } from '../../../assets/utils';
 
-const IsMe = ({text, date}) => {
+const IsMe = ({text, date, onLongPress}) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onLongPress={onLongPress}>
       <View style={styles.chatContent}>
         <Text style={styles.text}>{text}</Text>
       </View>
