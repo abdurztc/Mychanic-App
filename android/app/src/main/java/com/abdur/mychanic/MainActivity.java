@@ -1,4 +1,4 @@
-package com.mychanic;
+package com.abdur.mychanic;
 
 import com.facebook.react.ReactActivity;
 

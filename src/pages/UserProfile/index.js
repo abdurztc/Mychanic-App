@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable eslint-comments/no-unused-disable */
+
 /* eslint-disable prettier/prettier */
-// eslint-disable-next-line eslint-comments/no-unused-disable
-/* eslint-disable no-unused-vars */
+
+
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -60,18 +60,14 @@ const UserProfile = ({navigation, route}) => {
         icon="edit-profile"
         onPress={() => navigation.navigate('UpdateProfile')}
       />
-      {/* <List
-        name="Edit Profile"
-        desc="Last Update Today"
-        type="next"
-        icon="language"
-      />
       <List
-        name="Edit Profile"
+        name="Ubah Password"
         desc="Last Update Today"
         type="next"
-        icon="rate"
-      /> */}
+        icon="edit-profile"
+        onPress={() => navigation.navigate("ChangePassword")}
+      />
+   
       <List name="Logout" type="next" icon="sign-out" onPress={signOut} />
     </View>
   );

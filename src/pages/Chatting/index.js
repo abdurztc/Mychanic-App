@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import React, {useState, useEffect} from 'react';
-import {Alert, StyleSheet, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {
   colors,
@@ -9,6 +9,7 @@ import {
   getData,
   setDateChat,
   showError,
+  showSuccess,
 } from '../../assets/utils';
 import {ChatItem, Header, InputChat} from '../../components';
 import {FireDB} from '../../config';
@@ -16,7 +17,6 @@ import {FireDB} from '../../config';
 const Chatting = ({navigation, route}) => {
   const dataMechanic = route.params;
   const [chatContent, setChatContent] = useState('');
-  const [delchatContent, deleteChatContent] = useState('');
   const [user, setUser] = useState({});
   const [chatData, setChatData] = useState([]);
 
@@ -27,7 +27,7 @@ const Chatting = ({navigation, route}) => {
     FireDB.database()
       .ref(urlFirebase)
       .on('value', snapshot => {
-        console.log('data chat: ', snapshot.val());
+        // console.log('data chat: ', snapshot.val());
         if (snapshot.val()) {
           const dataSnapshot = snapshot.val();
           const allDataChat = [];
@@ -45,7 +45,7 @@ const Chatting = ({navigation, route}) => {
               data: newDataChat,
             });
           });
-          console.log('hasil looping array : ', allDataChat);
+          // console.log('hasil looping array : ', allDataChat);
           setChatData(allDataChat);
         }
       });
@@ -61,7 +61,7 @@ const Chatting = ({navigation, route}) => {
 
     const data = {
       sendBy: user.uid,
-      chatDate: new Date().getTime(),
+      chatDate: today.getTime(),
       chatTime: getChatTime(today),
       chatContent: chatContent,
     };
@@ -71,16 +71,17 @@ const Chatting = ({navigation, route}) => {
       today,
     )}`;
     const urlMessagesUser = `messages/${user.uid}/${chatusernmechanicByID}`;
-    const urlMessagesMechanic = `messages/${dataMechanic.uid}/${chatusernmechanicByID}`;
+    const urlMessagesMechanic = `messages/${dataMechanic.data.uid}/${chatusernmechanicByID}`;
     const dataHistoryChatForUser = {
       lastContentChat: chatContent,
-      lastChatDate: today.getTime(today),
+      lastChatDate: today.getTime(),
       uidPartner: dataMechanic.data.uid,
     };
     const dataHistoryChatForMechanic = {
       lastContentChat: chatContent,
-      lastChatDate: today.getTime(today),
-      uidPartner: dataMechanic.data.uid,
+      lastChatDate: today.getTime(),
+      // uidPartner: dataMechanic.data.uid,
+      uidPartner: user.uid,
     };
     // console.log('data untuk dikirim: ', data);
     setChatContent('');
@@ -96,28 +97,11 @@ const Chatting = ({navigation, route}) => {
         FireDB.database()
           .ref(urlMessagesMechanic)
           .set(dataHistoryChatForMechanic);
+        showSuccess('Terima kasih kami akan segera membalas Pesan Anda');
       })
       .catch(err => {
         showError(err.message);
       });
-      // deleteChatContent('');
-      // FireDB.database()
-      //   .ref(urlFirebase)
-      //   .remove(data)
-      //   .then(res => {
-      //     setChatContent('');
-      //     FireDB.database()
-      //       .ref(urlMessagesUser)
-      //       .set(dataHistoryChatForUser);
-  
-      //     FireDB.database()
-      //       .ref(urlMessagesMechanic)
-      //       .set(dataHistoryChatForMechanic);
-      //   })
-      //   .catch(err => {
-      //     showError(err.message);
-      //   });
-
   };
   return (
     <View style={styles.page}>
@@ -143,7 +127,6 @@ const Chatting = ({navigation, route}) => {
                       text={itemChat.data.chatContent}
                       date={itemChat.data.chatTime}
                       photo={isMe ? null : {uri: dataMechanic.data.photo}}
-                      onLongPress={delchatContent}
                     />
                   );
                 })}

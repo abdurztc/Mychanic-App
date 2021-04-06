@@ -1,10 +1,5 @@
-/* eslint-disable eslint-comments/no-unused-disable */
 /* eslint-disable prettier/prettier */
-/* eslint-disable eslint-comments/no-unused-disable */
-/* eslint-disable prettier/prettier */
-// eslint-disable-next-line eslint-comments/no-unused-disable
-/* eslint-disable no-unused-vars */
-/* eslint-disable prettier/prettier */
+
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { showMessage } from 'react-native-flash-message';

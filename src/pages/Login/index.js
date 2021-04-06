@@ -32,7 +32,7 @@ const Login = ({navigation}) => {
             if (resDB.val()) {
               storeData('user', resDB.val());
               navigation.replace('MainApp');
-              showSuccess('Behasil login');
+              showSuccess('Berhasil login');
             }
           });
       })

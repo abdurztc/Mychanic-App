@@ -1,17 +1,15 @@
 /* eslint-disable prettier/prettier */
-import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {showMessage} from 'react-native-flash-message';
-import {ScrollView} from 'react-native-gesture-handler';
-import {colors, storeData, useForm} from '../../assets/utils';
-import {Button, Gap, Header, Input, Loading} from '../../components';
-import {FireDB} from '../../config';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import { showMessage } from 'react-native-flash-message';
+import { ScrollView } from 'react-native-gesture-handler';
+import { useDispatch } from 'react-redux';
+import { colors, storeData, useForm } from '../../assets/utils';
+import { Button, Gap, Header, Input } from '../../components';
+import { FireDB } from '../../config';
 
 const Register = ({navigation}) => {
-  // const [fullName, setFullName] = useState('');
-  // const [vehicle, setVehicle] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
   const [form, setForm] = useForm({
     fullName: '',
@@ -20,15 +18,15 @@ const Register = ({navigation}) => {
     password: '',
   });
 
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const onContinue = () => {
-    console.log(form);
-    setLoading(true);
+    dispatch({type: 'SET_LOADING', value: true});
+    // setLoading(true);
     FireDB.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
       .then(success => {
-        setLoading(false);
+        dispatch({type: 'SET_LOADING', value: false});
         setForm('reset');
         const data = {
           fullName: form.fullName,
@@ -42,11 +40,11 @@ const Register = ({navigation}) => {
 
         storeData('user', data);
         navigation.navigate('UploadPhoto', data);
-        console.log('register sukses : ', success);
+        // console.log('register sukses : ', success);
       })
       .catch(error => {
         var errorMessage = error.message;
-        setLoading(false);
+        dispatch({type: 'SET_LOADING', value: false});
         showMessage({
           message: errorMessage,
           type: 'default',
@@ -57,7 +55,7 @@ const Register = ({navigation}) => {
   };
 
   return (
-    <>
+
       <View style={styles.page}>
         <Header onPress={() => navigation.goBack()} title="Daftar Akun" />
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -94,9 +92,8 @@ const Register = ({navigation}) => {
           </View>
         </ScrollView>
       </View>
-      {loading && <Loading />}
-    </>
-  );
+      // {/* {loading && <Loading />} */}
+      );
 };
 
 export default Register;

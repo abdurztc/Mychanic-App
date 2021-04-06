@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.mychanic"
+        applicationId "com.abdur.mychanic"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

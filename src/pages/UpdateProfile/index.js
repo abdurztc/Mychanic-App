@@ -17,7 +17,7 @@ const UpdateProfile = ({navigation}) => {
   });
   const [password, setPassword] = useState('');
   const [photo, setPhoto] = useState(ILNullPhoto);
-  const [PhotoForDB, setPhotoForDB] = useState('');
+  const [photoForDB, setPhotoForDB] = useState('');
 
   // useEffect(() => {
   //   getData('user').then(res => {
@@ -37,45 +37,29 @@ const UpdateProfile = ({navigation}) => {
   }, []);
 
   const update = () => {
-    // console.log('profile: ', profile);
-
-    // console.log('new Password: ', password);
-
     if (password.length > 0) {
       if (password.length < 6) {
-        showMessage({
-          message: 'Password kurang dari 6 karakter',
-          type: 'default',
-          backgroundColor: colors.error,
-          color: 'white',
-        });
+        showError('Password kurang dari 6 karater');
       } else {
         updatePassword();
         updateProfileData();
-        navigation.replace('MainApp');
       }
     } else {
       updateProfileData();
-      navigation.replace('MainApp');
     }
   };
   const updatePassword = () => {
     FireDB.auth().onAuthStateChanged(user => {
       if (user) {
         user.updatePassword(password).catch(err => {
-          showMessage({
-            message: err.message,
-            type: 'default',
-            backgroundColor: colors.error,
-            color: 'white',
-          });
+          showMessage(err.message);
         });
       }
     });
   };
   const updateProfileData = () => {
     const data = profile;
-    data.photo = PhotoForDB;
+    data.photo = photoForDB;
     FireDB.database()
       .ref(`users/${profile.uid}/`)
       .update(data)
@@ -147,12 +131,12 @@ const UpdateProfile = ({navigation}) => {
           <Gap height={24} />
           <Input label="Email" value={profile.email} disable />
           <Gap height={24} />
-          <Input
+          {/* <Input
             label="Password"
             secureTextEntry
-            value={password}
+            value={password} disable
             onChangeText={value => setPassword(value)}
-          />
+          /> */}
           <Gap height={40} />
           <Button title="Save Profile" onPress={update} />
         </View>

@@ -1,13 +1,17 @@
 /* eslint-disable prettier/prettier */
+
+/* eslint-disable prettier/prettier */
+
+/* eslint-disable prettier/prettier */
 import React, {useEffect, useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {ILNullPhoto} from '../../assets';
-import {colors, fonts, getData, showError} from '../../assets/utils';
+import {colors, fonts, getData, showError, newsAPI} from '../../assets/utils';
 import {
   Category,
-  ForYouItem,
   Gap,
   HomeProfile,
+  NewsItem,
   TopMechanical,
 } from '../../components';
 import {FireDB} from '../../config';
@@ -26,6 +30,7 @@ const Home = ({navigation}) => {
     getCategoryMechanic();
     getTopMechanical();
     getForYouItem();
+    // getNewsFromAPI();
     navigation.addListener('focus', () => {
       getUserData();
     });
@@ -54,7 +59,23 @@ const Home = ({navigation}) => {
         showError(err.message);
       });
   };
+  // const getNewsFromAPI = () => {
+  //   newsAPI
+  //     .get(
+  //       'top-headlines?country=id&category=science&apiKey=53276f86ee6c402aa05a888bb357bf58',
+  //       //https://console.firebase.google.com/project/mychanic-21/storage/mychanic-21.appspot.com/files
+  //     )
+  //     .then(async res => {
+  //       setNews(res.data.articles);
+  //     })
+  //     .catch(error => {
+  //       showError(error.message);
+  //     });
+  // };
 
+  // if (!news) {
+  //   return null;
+  // }
   const getForYouItem = () => {
     FireDB.database()
       .ref('news/')
@@ -116,7 +137,7 @@ const Home = ({navigation}) => {
                 {categoryMechanic.map(item => {
                   return (
                     <Category
-                    key={`category-${item.id}`}
+                      key={`category-${item.id}`}
                       category={item.category}
                       onPress={() =>
                         navigation.navigate('ChooseMechanic', item)
@@ -146,14 +167,19 @@ const Home = ({navigation}) => {
 
             <Text style={styles.sectionLabel}>Good News for you</Text>
           </View>
-          {news.map(item => {
+          {news.map((item, key) => {
             return (
-              <ForYouItem
-              key={`news-${item.id}`}
+              <NewsItem
+                key={key}
                 title={item.title}
                 date={item.date}
-                image={item.image}
-                url={{uri: item.url}}
+                urlToImage={{
+                  uri:
+                    item.urlToImage != null
+                      ? item.urlToImage
+                      : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWBAMAAADOL2zRAAAAG1BMVEXMzMyWlpajo6PFxcW3t7ecnJyqqqq+vr6xsbGXmO98AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABPUlEQVRoge3Tv0/CQBjG8YcWaMcebymOENLI2MZoHMHEvVUKjq1K4lhM2Kvxx7/tUUiamDhc6GSez8INzbf3HleAiIiIiIiIiIiIiNozAGzvuJYTW2reXmso7bX8YN96HUR1a7RZ6+VVOgU+p4LuZGrSkqK0PWfwfl+3ht/hcpdvPkJ0g0fBYpYZtS7HttfPMatbAbZzJ1kjjnqVK1ihNzdpdX3b65S4qVsjXbG9EtuoEzliC/RbDFoIL7wY2NZrQayPzw1VpH/FUUqNjVrx0+9W8Rzrlt7yMMvMWq7fzHhoCTp6Rr0vw0uiH8+as69bov/AyNqf/Rms3Ky1aO7EYV93X2nlBIXg7WVSmrWs5q4eWrvVdYLbpR4/PTeZ8S9O82mdzMr7SVstV6mqrRaKh9ZSRERERERERET0n/wAZwMqI9kyPcoAAAAASUVORK5CYII=',
+                }}
+                onPress={() => navigation.navigate('News', item)}
               />
             );
           })}

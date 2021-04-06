@@ -12,6 +12,8 @@ import Chatting from './Chatting';
 import UserProfile from './UserProfile';
 import UpdateProfile from './UpdateProfile';
 import MechanicProfile from './MechanicProfile';
+import News from './News';
+import ChangePassword from './ChangePassword';
 
 export {
   Splash,
@@ -27,4 +29,6 @@ export {
   UpdateProfile,
   MechanicProfile,
   UserProfileTab,
+  News,
+  ChangePassword,
 };
