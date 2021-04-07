@@ -27,7 +27,7 @@ const Messages = ({navigation}) => {
           const detailMechanic = await rootDB
             .child(urlUidMechanic)
             .once('value');
-          console.log('detail mechanic: ', detailMechanic.val());
+          // console.log('detail mechanic: ', detailMechanic.val());
           data.push({
             id: key,
             detailMechanic: detailMechanic.val(),

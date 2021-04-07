@@ -11,7 +11,7 @@ import InputChat from './InputChat';
 import Profile from './Profile';
 import ProfileItem from './ProfileItem';
 import Loading from './Loading';
-
+import HeaderProfile from './HeaderProfile';
 
 export {
   Header,
@@ -26,5 +26,5 @@ export {
   List,
   ProfileItem,
   Loading,
-
+  HeaderProfile,
 };

@@ -1,12 +1,13 @@
 /* eslint-disable prettier/prettier */
 
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { showMessage } from 'react-native-flash-message';
-import { ILNullPhoto } from '../../assets';
-import { colors, getData } from '../../assets/utils';
-import { Gap, Header, List, Profile } from '../../components';
-import { FireDB } from '../../config';
+import {HeaderTitle} from '@react-navigation/stack';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {showMessage} from 'react-native-flash-message';
+import {ILNullPhoto} from '../../assets';
+import {colors, getData} from '../../assets/utils';
+import {Gap, Header, HeaderProfile, List, Profile} from '../../components';
+import {FireDB} from '../../config';
 
 const UserProfileTab = ({navigation}) => {
   const [profile, setProfile] = useState({
@@ -39,7 +40,7 @@ const UserProfileTab = ({navigation}) => {
   };
   return (
     <View style={styles.page}>
-      <Header title="Profile" onPress={() => navigation.goBack()} />
+<HeaderProfile title='Profile' />
       <Gap height={10} />
       {profile.fullName.length > 0 && (
         <Profile
@@ -56,18 +57,19 @@ const UserProfileTab = ({navigation}) => {
         icon="edit-profile"
         onPress={() => navigation.navigate('UpdateProfile')}
       />
-      {/* <List
+      {/* {/* <List
         name="Edit Profile"
         desc="Last Update Today"
         type="next"
         icon="language"
-      />
+      /> */}
       <List
-        name="Edit Profile"
+        name="Ubah Password"
         desc="Last Update Today"
         type="next"
-        icon="rate"
-      /> */}
+        icon="edit-profile"
+        onPress={() => navigation.navigate('ChangePassword')}
+      />
       <List name="Logout" type="next" icon="sign-out" onPress={signOut} />
     </View>
   );

@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Alert, StyleSheet, Text, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {
   colors,
@@ -13,8 +13,26 @@ import {
 } from '../../assets/utils';
 import {ChatItem, Header, InputChat} from '../../components';
 import {FireDB} from '../../config';
+import NotifService from '../../NotifService';
 
 const Chatting = ({navigation, route}) => {
+  const [registerToken, setRegisterToken] = useState('');
+  const [fcmRegistered, setFcmRegistered] = useState(false);
+
+  const onRegister = (token) => {
+    setRegisterToken(token.token);
+    setFcmRegistered(true);
+  };
+
+  const onNotif = (notif) => {
+    Alert.alert(notif.title, notif.message);
+  };
+
+  const notif = new NotifService(onRegister, onNotif);
+
+  const handlePerm = (perms) => {
+    Alert.alert('Permissions', JSON.stringify(perms));
+  };
   const dataMechanic = route.params;
   const [chatContent, setChatContent] = useState('');
   const [user, setUser] = useState({});
@@ -65,6 +83,7 @@ const Chatting = ({navigation, route}) => {
       chatTime: getChatTime(today),
       chatContent: chatContent,
     };
+
     const chatusernmechanicByID = `${user.uid}_${dataMechanic.data.uid}`;
 
     const urlFirebase = `chatting/${chatusernmechanicByID}/allChat/${setDateChat(
@@ -140,6 +159,9 @@ const Chatting = ({navigation, route}) => {
         value={chatContent}
         onChangeText={value => setChatContent(value)}
         onButtonPress={chatSend}
+        onPress={() => {
+          notif.localNotif();
+        }}
       />
     </View>
   );

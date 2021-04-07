@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {colors} from '../../../assets/utils';
-import {Button, Gap} from '../../atoms';
+import { StyleSheet, Text, View } from 'react-native';
+import { colors } from '../../../assets/utils';
+import { Button, Gap } from '../../atoms';
 import DarkProfile from './DarkProfile';
 
 const Header = ({onPress, title, desc, type, photo}) => {
@@ -11,6 +11,7 @@ const Header = ({onPress, title, desc, type, photo}) => {
       <DarkProfile onPress={onPress} title={title} desc={desc} photo={photo} />
     );
   }
+
   return (
     <View style={styles.container(type)}>
       <Button
