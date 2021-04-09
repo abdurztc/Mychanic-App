@@ -65,9 +65,8 @@ const UserProfileTab = ({navigation}) => {
       /> */}
       <List
         name="Ubah Password"
-        desc="Last Update Today"
         type="next"
-        icon="edit-profile"
+        icon="editprofile"
         onPress={() => navigation.navigate('ChangePassword')}
       />
       <List name="Logout" type="next" icon="sign-out" onPress={signOut} />

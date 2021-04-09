@@ -17,8 +17,8 @@ import ICSendDark from './ic-send-dark.svg';
 import ICSendLight from './ic-send-light.svg';
 import IconEditProfile from './ic-edit-profile.svg';
 import IconLanguage from './ic-language.svg';
-import IconRate from './ic-rate.svg';
-import IconHelp from './ic-help.svg';
+import IconPassword from './key.svg';
+import IconOut from './signout.svg';
 
 export {
   IconBackDark,
@@ -39,6 +39,6 @@ export {
   ICSendLight,
   IconEditProfile,
   IconLanguage,
-  IconRate,
-  IconHelp,
+  IconPassword,
+  IconOut,
 };

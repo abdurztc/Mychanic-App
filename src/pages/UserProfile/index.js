@@ -55,19 +55,17 @@ const UserProfile = ({navigation, route}) => {
       <Gap height={14} />
       <List
         name="Edit Profile"
-        // desc="Last Update Today"
         type="next"
         icon="edit-profile"
         onPress={() => navigation.navigate('UpdateProfile')}
       />
       <List
         name="Ubah Password"
-        desc="Last Update Today"
         type="next"
-        icon="edit-profile"
-        onPress={() => navigation.navigate("ChangePassword")}
+        icon="edit-password"
+        onPress={() => navigation.navigate('ChangePassword')}
       />
-   
+
       <List name="Logout" type="next" icon="sign-out" onPress={signOut} />
     </View>
   );

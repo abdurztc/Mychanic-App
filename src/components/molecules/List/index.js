@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {ICNext, IconEditProfile, IconHelp} from '../../../assets';
+import {ICNext, IconEditProfile, IconOut, IconPassword} from '../../../assets';
 import {colors, fonts} from '../../../assets/utils';
 
 const List = ({profile, name, desc, type, onPress, icon}) => {
@@ -9,9 +9,11 @@ const List = ({profile, name, desc, type, onPress, icon}) => {
     if (icon === 'edit-profile') {
       return <IconEditProfile />;
     }
-
+    if (icon === 'editpassword') {
+      return <IconPassword />;
+    }
     if (icon === 'sign-out') {
-      return <IconHelp />;
+      return <IconOut/>;
     }
     return <IconEditProfile />;
   };
